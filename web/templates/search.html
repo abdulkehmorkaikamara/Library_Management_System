@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Search Books</h2><br>
+<form method="POST">
+    <label>Search by Title, Author, or Genre:</label>
+    <input type="text" name="query" value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+
+{% if results %}
+<h3>Results for "{{ query }}":</h3>
+<table border="1" cellspacing="0" cellpadding="8">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Quantity</th>
+    </tr>
+    {% for book in results %}
+    <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.genre }}</td>
+        <td>{{ book.quantity }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% endblock %}

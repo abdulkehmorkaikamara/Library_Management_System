@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Borrow Book: {{ book.title }}</h2>
+<form method="POST">
+    <div>
+        <label>Borrower Name</label>
+        <input type="text" name="borrower_name" required>
+    </div>
+    <div>
+        <label>Borrow Date</label>
+        <input type="date" name="borrow_date" required>
+    </div>
+    <div>
+        <label>Due Date</label>
+        <input type="date" name="due_date" required>
+    </div>
+    <button type="submit">Borrow</button>
+</form>
+{% endblock %}

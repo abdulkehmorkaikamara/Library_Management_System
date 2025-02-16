@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Borrowed Books</h2>
+<table border="1" cellspacing="0" cellpadding="8">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Borrower</th>
+        <th>Borrow Date</th>
+        <th>Due Date</th>
+        <th>Returned</th>
+        <th>Actions</th>
+    </tr>
+    {% for item in borrowed_list %}
+    <tr>
+        <td>{{ item.title }}</td>
+        <td>{{ item.author }}</td>
+        <td>{{ item.borrower_name }}</td>
+        <td>{{ item.borrow_date }}</td>
+        <td>{{ item.due_date }}</td>
+        <td>{{ item.returned == 1 and "Yes" or "No" }}</td>
+        <td>
+            {% if item.returned == 0 %}
+            <form action="{{ url_for('return_book', borrowed_id=item.borrowed_id) }}" method="POST">
+                <button type="submit" onclick="return confirm('Mark as returned?')">Return</button>
+            </form>
+            {% else %}
+            N/A
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
